@@ -44,12 +44,12 @@ export default function Home() {
                 <p className="text-xl text-gray-600 dark:text-gray-300 animate-fade-in-delay">
                   A passionate developer building amazing digital experiences
                 </p>
-                <div className="flex gap-4 animate-fade-in-delay-2">
+                <div className="flex gap-6 animate-fade-in-delay-2">
                   <a
                     href="https://github.com/yourusername"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transform hover:scale-110 transition-all"
+                    className="p-3 text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-glow transform hover:scale-110 transition-all duration-300 animate-float"
                   >
                     <FaGithub size={24} />
                   </a>
@@ -57,7 +57,7 @@ export default function Home() {
                     href="https://linkedin.com/in/yourusername"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transform hover:scale-110 transition-all"
+                    className="p-3 text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-glow transform hover:scale-110 transition-all duration-300 animate-float-slow"
                   >
                     <FaLinkedin size={24} />
                   </a>
@@ -65,7 +65,7 @@ export default function Home() {
                     href="https://twitter.com/yourusername"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transform hover:scale-110 transition-all"
+                    className="p-3 text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-glow transform hover:scale-110 transition-all duration-300 animate-float-fast"
                   >
                     <FaTwitter size={24} />
                   </a>
@@ -91,40 +91,52 @@ export default function Home() {
         </section>
 
         {/* Skills Section */}
-        <section id="skills" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
+        <section id="skills" className="py-20 px-4 md:px-6 lg:px-8 bg-gradient-to-b from-background to-white dark:from-gray-900 dark:to-gray-800">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">
               My Skills
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
-                <HiCode className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Frontend Development</h3>
-                <ul className="space-y-2 text-gray-600 dark:text-gray-300">
-                  <li>React / Next.js</li>
-                  <li>TypeScript</li>
-                  <li>Tailwind CSS</li>
-                  <li>HTML5 / CSS3</li>
+              <div className="p-8 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-glow transform hover:-translate-y-2 transition-all duration-500">
+                <div className="animate-float-slow">
+                  <HiCode className="w-16 h-16 text-primary mb-6" />
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white hover:text-primary transition-colors duration-300">Frontend Development</h3>
+                <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+                  {['React / Next.js', 'TypeScript', 'Tailwind CSS', 'HTML5 / CSS3'].map((skill) => (
+                    <li key={skill} className="flex items-center space-x-2 hover:text-primary dark:hover:text-primary transition-colors duration-300">
+                      <span className="w-2 h-2 bg-primary rounded-full animate-pulse-slow" />
+                      <span>{skill}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
-              <div className="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
-                <HiDatabase className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Backend Development</h3>
-                <ul className="space-y-2 text-gray-600 dark:text-gray-300">
-                  <li>Node.js</li>
-                  <li>Python</li>
-                  <li>SQL / NoSQL</li>
-                  <li>RESTful APIs</li>
+              <div className="p-8 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-glow transform hover:-translate-y-2 transition-all duration-500">
+                <div className="animate-float">
+                  <HiDatabase className="w-16 h-16 text-accent mb-6" />
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white hover:text-accent transition-colors duration-300">Backend Development</h3>
+                <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+                  {['Node.js', 'Python', 'SQL / NoSQL', 'RESTful APIs'].map((skill) => (
+                    <li key={skill} className="flex items-center space-x-2 hover:text-accent dark:hover:text-accent transition-colors duration-300">
+                      <span className="w-2 h-2 bg-accent rounded-full animate-pulse-slow" />
+                      <span>{skill}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
-              <div className="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
-                <HiCloud className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Other Skills</h3>
-                <ul className="space-y-2 text-gray-600 dark:text-gray-300">
-                  <li>Git / GitHub</li>
-                  <li>AWS / Cloud</li>
-                  <li>Docker</li>
-                  <li>CI/CD</li>
+              <div className="p-8 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-glow transform hover:-translate-y-2 transition-all duration-500">
+                <div className="animate-float-fast">
+                  <HiCloud className="w-16 h-16 text-success mb-6" />
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white hover:text-success transition-colors duration-300">Other Skills</h3>
+                <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+                  {['Git / GitHub', 'AWS / Cloud', 'Docker', 'CI/CD'].map((skill) => (
+                    <li key={skill} className="flex items-center space-x-2 hover:text-success dark:hover:text-success transition-colors duration-300">
+                      <span className="w-2 h-2 bg-success rounded-full animate-pulse-slow" />
+                      <span>{skill}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>

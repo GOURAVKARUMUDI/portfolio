@@ -25,7 +25,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   return (
     <div
-      className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2"
+      className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-glow-hover"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -34,11 +34,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           src={image}
           alt={title}
           fill
-          className={`object-cover transition-transform duration-500 ${
-            isHovered ? 'scale-110' : 'scale-100'
+          className={`object-cover transition-all duration-700 ${
+            isHovered ? 'scale-110 blur-[2px]' : 'scale-100'
           }`}
         />
-        <div className={`absolute inset-0 bg-black/60 flex items-center justify-center gap-4 transition-opacity duration-300 ${
+        <div className={`absolute inset-0 bg-primary/60 flex items-center justify-center gap-6 transition-all duration-500 ${
           isHovered ? 'opacity-100' : 'opacity-0'
         }`}>
           {demoLink && (
@@ -46,10 +46,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               href={demoLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-primary rounded-full text-white hover:bg-primary/80 transform hover:scale-110 transition-all"
+              className="p-4 bg-white rounded-full text-primary hover:text-white hover:bg-accent transform hover:scale-110 transition-all duration-300 animate-float-slow"
               aria-label="View Demo"
             >
-              <FaExternalLinkAlt size={20} />
+              <FaExternalLinkAlt size={24} />
             </a>
           )}
           {githubLink && (
@@ -57,22 +57,24 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               href={githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-primary rounded-full text-white hover:bg-primary/80 transform hover:scale-110 transition-all"
+              className="p-4 bg-white rounded-full text-primary hover:text-white hover:bg-accent transform hover:scale-110 transition-all duration-300 animate-float"
               aria-label="View Source Code"
             >
-              <FaGithub size={20} />
+              <FaGithub size={24} />
             </a>
           )}
         </div>
       </div>
-      <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{title}</h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">{description}</p>
+      <div className="p-6 space-y-4">
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors duration-300">
+          {title}
+        </h3>
+        <p className="text-gray-600 dark:text-gray-300">{description}</p>
         <div className="flex flex-wrap gap-2">
           {technologies.map((tech) => (
             <span
               key={tech}
-              className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full"
+              className="px-3 py-1 text-sm bg-primary/10 text-primary dark:bg-primary/20 rounded-full hover:bg-primary hover:text-white transform hover:scale-105 transition-all duration-300"
             >
               {tech}
             </span>
