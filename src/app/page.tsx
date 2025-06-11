@@ -3,12 +3,14 @@
 import React from 'react'
 import Image from 'next/image'
 import { FaGithub, FaLinkedin, FaTwitter, FaCertificate } from 'react-icons/fa'
-import { HiCode, HiDatabase, HiCloud } from 'react-icons/hi'
+import { HiCode, HiDatabase, HiCloud, HiMail, HiAcademicCap } from 'react-icons/hi'
 import Navbar from '@/components/Navbar'
 import ProjectCard from '@/components/ProjectCard'
 import ScrollToTop from '@/components/ScrollToTop'
 import { motion } from 'framer-motion'
 import Sidebar from '../components/Sidebar'
+import ComingSoonProject from '../components/ComingSoonProject'
+import CertificateCard from '../components/CertificateCard'
 
 const projects = [
   {
@@ -76,8 +78,17 @@ export default function Home() {
           variants={fadeInUp}
           className="max-w-4xl"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">About Me</h2>
-          {/* Add your about content */}
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Education</h2>
+          <div className="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg">
+            <div className="flex items-center gap-4 mb-4">
+              <HiAcademicCap className="w-8 h-8 text-primary" />
+              <div>
+                <h3 className="text-xl font-semibold">KL University, Vijayawada</h3>
+                <p className="text-gray-600 dark:text-gray-400">Bachelor's Degree</p>
+              </div>
+            </div>
+            <p className="text-gray-600 dark:text-gray-400">Expected Graduation: 2028</p>
+          </div>
         </motion.div>
       </section>
 
@@ -108,6 +119,7 @@ export default function Home() {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <ComingSoonProject />
             {projects.map((project, index) => (
               <ProjectCard key={index} {...project} />
             ))}
@@ -155,29 +167,21 @@ export default function Home() {
       </section>
 
       {/* Certificates Section */}
-      <section id="certificates" className="py-20 px-4 md:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">
-            Certificates
-          </h2>
+      <section id="certificates" className="min-h-screen flex items-center justify-center px-4 py-20">
+        <motion.div
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          className="max-w-6xl w-full"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Certificates</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((index) => (
-              <div
-                key={index}
-                className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 transform hover:scale-105 transition-all"
-              >
-                <FaCertificate className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Certificate Name</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  Description of the certification and skills acquired.
-                </p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Issued by: Organization Name
-                </p>
-              </div>
-            ))}
+            <CertificateCard />
+            <CertificateCard />
+            <CertificateCard />
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Contact Section */}
@@ -190,7 +194,28 @@ export default function Home() {
           className="max-w-4xl w-full"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Contact Me</h2>
-          {/* Add your contact form */}
+          <div className="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg">
+            <div className="flex flex-col items-center gap-6">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center gap-3 text-primary"
+              >
+                <HiMail className="w-6 h-6" />
+                <a href="mailto:gouravkarumudi6@gmail.com" className="text-lg">
+                  gouravkarumudi6@gmail.com
+                </a>
+              </motion.div>
+              
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => window.location.href = 'mailto:gouravkarumudi6@gmail.com'}
+                className="px-8 py-3 bg-primary text-white rounded-full hover:shadow-lg transition-shadow"
+              >
+                Send Email
+              </motion.button>
+            </div>
+          </div>
         </motion.div>
       </section>
     </main>
