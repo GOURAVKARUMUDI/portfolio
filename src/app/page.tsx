@@ -17,8 +17,8 @@ const projects = [
     description: 'A modern portfolio website built with Next.js and Tailwind CSS, featuring dark mode and responsive design.',
     image: '/project-placeholder.png',
     technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
-    demoLink: 'https://your-portfolio.com',
-    githubLink: 'https://github.com/GOURAVKARUMUDI',
+    demoLink: 'https://gouravkarumudi.github.io/Portfolio',
+    githubLink: 'https://github.com/GOURAVKARUMUDI/Portfolio',
   },
   {
     title: 'Coming Soon',
@@ -28,6 +28,12 @@ const projects = [
     demoLink: '',
     githubLink: '',
   },
+]
+
+const skills = [
+  { name: 'Frontend Development', icon: HiCode, items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'] },
+  { name: 'Backend Development', icon: HiDatabase, items: ['Node.js', 'Express', 'MongoDB', 'SQL'] },
+  { name: 'Cloud & DevOps', icon: HiCloud, items: ['AWS', 'Docker', 'CI/CD', 'Git'] },
 ]
 
 export default function Home() {
@@ -44,13 +50,13 @@ export default function Home() {
       <ScrollToTop />
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center px-4">
+      <section id="home" className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
         <motion.div
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
           variants={fadeInUp}
-          className="text-center"
+          className="text-center z-10"
         >
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
             Welcome to My Portfolio
@@ -58,13 +64,14 @@ export default function Home() {
           <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8">
             Full Stack Developer | UI/UX Enthusiast
           </p>
-          <motion.button
+          <motion.a
+            href="#contact"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 bg-primary text-white rounded-full hover:shadow-lg transition-shadow"
+            className="inline-block px-8 py-3 bg-primary text-white rounded-full hover:shadow-lg transition-shadow"
           >
             Get in Touch
-          </motion.button>
+          </motion.a>
         </motion.div>
       </section>
 
@@ -78,7 +85,7 @@ export default function Home() {
           className="max-w-4xl w-full"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Education</h2>
-          <div className="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg flex flex-col items-center">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg flex flex-col items-center">
             <Image
               src="/profile.jpg"
               alt="GOURAV KARUMUDI"
@@ -108,8 +115,29 @@ export default function Home() {
           className="max-w-4xl w-full"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Skills</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {/* Add your skills */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {skills.map((skill, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ y: -5 }}
+                className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <skill.icon className="w-6 h-6 text-primary" />
+                  <h3 className="text-lg font-semibold">{skill.name}</h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {skill.items.map((item, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm text-gray-700 dark:text-gray-300"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </section>
@@ -156,7 +184,7 @@ export default function Home() {
           className="max-w-4xl w-full"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Contact Me</h2>
-          <div className="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
             <div className="flex flex-col items-center gap-6">
               <motion.div
                 whileHover={{ scale: 1.05 }}
