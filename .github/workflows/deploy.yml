@@ -31,11 +31,15 @@ jobs:
           cache: 'npm'
           
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm ci
+          npm cache clean --force
         
       - name: Build
-        run: npm run build
+        run: |
+          npm run build
         env:
+          NODE_ENV: production
           NEXT_PUBLIC_BASE_PATH: /Portfolio
           
       - name: Configure Pages
@@ -44,8 +48,10 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: out
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 
+        uses: actions/deploy-pages@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} 
