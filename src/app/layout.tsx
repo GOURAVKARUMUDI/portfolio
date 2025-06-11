@@ -2,12 +2,13 @@ import React from 'react'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import AnimatedBackground from '@/components/AnimatedBackground'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Portfolio | Your Name',
-  description: 'Personal portfolio showcasing my work and skills',
+  title: 'Gourav Karumudi - Portfolio',
+  description: 'Personal portfolio website showcasing my projects and skills',
 }
 
 export default function RootLayout({
@@ -16,11 +17,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <main className="min-h-screen bg-white dark:bg-gray-900">
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.className} relative min-h-screen`}>
+        <AnimatedBackground />
+        <div className="relative z-10">
           {children}
-        </main>
+        </div>
       </body>
     </html>
   )
