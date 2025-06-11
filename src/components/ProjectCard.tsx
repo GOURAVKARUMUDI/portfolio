@@ -1,7 +1,8 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 
 interface ProjectCardProps {
@@ -21,67 +22,64 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   demoLink,
   githubLink,
 }) => {
-  const [isHovered, setIsHovered] = useState(false)
-
   return (
-    <div
-      className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-glow-hover"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      whileHover={{ y: -10 }}
+      className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
     >
-      <div className="relative h-48 group">
+      <div className="relative h-48 overflow-hidden">
         <Image
           src={image}
           alt={title}
           fill
-          className={`object-cover transition-all duration-700 ${
-            isHovered ? 'scale-110 blur-[2px]' : 'scale-100'
-          }`}
+          className="object-cover transform hover:scale-110 transition-transform duration-500"
         />
-        <div className={`absolute inset-0 bg-primary/60 flex items-center justify-center gap-6 transition-all duration-500 ${
-          isHovered ? 'opacity-100' : 'opacity-0'
-        }`}>
-          {demoLink && (
-            <a
-              href={demoLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-4 bg-white rounded-full text-primary hover:text-white hover:bg-accent transform hover:scale-110 transition-all duration-300 animate-float-slow"
-              aria-label="View Demo"
+      </div>
+      <div className="p-6">
+        <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{title}</h3>
+        <p className="text-gray-600 dark:text-gray-300 mb-4">{description}</p>
+        <div className="flex flex-wrap gap-2 mb-4">
+          {technologies.map((tech) => (
+            <motion.span
+              key={tech}
+              whileHover={{ scale: 1.1 }}
+              className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm text-gray-700 dark:text-gray-300"
             >
-              <FaExternalLinkAlt size={24} />
-            </a>
-          )}
+              {tech}
+            </motion.span>
+          ))}
+        </div>
+        <div className="flex gap-4">
           {githubLink && (
-            <a
+            <motion.a
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
               href={githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 bg-white rounded-full text-primary hover:text-white hover:bg-accent transform hover:scale-110 transition-all duration-300 animate-float"
-              aria-label="View Source Code"
+              className="p-2 text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary"
             >
-              <FaGithub size={24} />
-            </a>
+              <FaGithub size={20} />
+            </motion.a>
+          )}
+          {demoLink && (
+            <motion.a
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              href={demoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary"
+            >
+              <FaExternalLinkAlt size={20} />
+            </motion.a>
           )}
         </div>
       </div>
-      <div className="p-6 space-y-4">
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors duration-300">
-          {title}
-        </h3>
-        <p className="text-gray-600 dark:text-gray-300">{description}</p>
-        <div className="flex flex-wrap gap-2">
-          {technologies.map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 text-sm bg-primary/10 text-primary dark:bg-primary/20 rounded-full hover:bg-primary hover:text-white transform hover:scale-105 transition-all duration-300"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
+    </motion.div>
   )
 }
 
